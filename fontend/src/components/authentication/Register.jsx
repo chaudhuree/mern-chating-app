@@ -5,6 +5,7 @@ import { VStack } from "@chakra-ui/react";
 import { useState } from "react";
 import {useToast} from "@chakra-ui/react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
     const [show, setShow] = useState(false);
@@ -18,6 +19,7 @@ const Register = () => {
     const [pic, setPic] = useState();
     const [picLoading, setPicLoading] = useState(false);
     const toast = useToast();
+    const navigate = useNavigate();
     const submitHandler = async () => {
         setPicLoading(true);
         if (!name || !email || !password || !confirmpassword) {
@@ -68,6 +70,7 @@ const Register = () => {
                   });
             localStorage.setItem("userInfo", JSON.stringify(data));
             setPicLoading(false);
+            navigate("/chat");
 
         } catch (error) {
             toast({
