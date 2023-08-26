@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const connectDB = require("./config/db");
+const {errorHandler, notFound} = require("./middleware/errorMiddleware");
 
 
 dotenv.config();
@@ -25,6 +26,8 @@ app.get("/", (req, res) => {
     res.send("server is on");
 });
 
+app.use(notFound);
+app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log("Server running on port 5000");
