@@ -1,3 +1,5 @@
+const { readdirSync } = require("fs");
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -16,6 +18,9 @@ app.use(helmet({crossOriginResourcePolicy: false}))
 
 // db connection
 connectDB();
+
+// routes
+readdirSync("./routes").map(r => app.use("/api/v1", require(`./routes/${r}`)))
 app.get("/", (req, res) => {
     res.send("server is on");
 });
