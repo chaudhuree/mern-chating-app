@@ -15,13 +15,13 @@ const HomePage = () => {
             m="40px 0 15px 0"
             borderWidth="1px">
 
-            <Text align="center" fontSize="2xl" fontFamily="Source Code Pro" fontWeight="bold" textTransform="uppercase">Envelop</Text>
+            <Text align="center" fontSize="2xl" fontFamily="Source Code Pro" fontWeight="extrabold" textTransform="uppercase">Envelop</Text>
         </Box>
         <Box width='100%' bg="white" borderWidth="1px">
             <Tabs>
                 <TabList mb='1em'>
-                    <Tab width='50%'>Login</Tab>
-                    <Tab width='50%'>Register</Tab>
+                    <Tab width='50%' fontWeight="bold">Login</Tab>
+                    <Tab width='50%' fontWeight="bold">Register</Tab>
                 </TabList>
 
                 <TabPanels>
