@@ -51,7 +51,7 @@ const Register = () => {
                 },
             };
             const { data } = await axios.post(
-                "http://localhost:5000/api/v1/register",
+                "/api/v1/register",
                 {
                     name,
                     email,
