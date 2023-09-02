@@ -3,7 +3,8 @@ const {
           accessChat,
           fetchChats,
           createGroupChat,
-          renameGroup
+          renameGroup,
+    addToGroup
 
       } = require("../controllers/chatControllers");
 const {protect} = require("../middleware/authMiddleware");
@@ -14,6 +15,7 @@ router.post("/createoraccessonetoonechat", protect, accessChat);
 router.get("/fetchchats", protect, fetchChats);
 router.post("/creategroupchat", protect, createGroupChat);
 router.put("/renamegroup", protect, renameGroup);
+router.put("/addtogroup", protect, addToGroup);
 
 
 module.exports = router;
