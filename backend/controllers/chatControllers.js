@@ -88,7 +88,8 @@ const createGroupChat = asyncHandler(async (req, res) => {
     if (!req.body.users || !req.body.name) {
         return res.status(400).send({message: "Please Fill all the feilds"});
     }
-    // convert string to array. cz from the fontend we are sending array of users.and we cannot send array from the fontend to the backend directly. so we have to convert it to string and then convert it back to array.
+    // convert string to array. cz from the fontend we are sending array of users.and we cannot send array from the
+    // fontend to the backend directly. so we have to convert it to string and then convert it back to array.
     let users = JSON.parse(req.body.users);
     // group chat must have more than 2 users
     if (users.length < 2) {
@@ -119,5 +120,32 @@ const createGroupChat = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc    Rename Group
+// @route   PUT /api/v1/renamegroup
+// @access  Protected
+const renameGroup = asyncHandler(async (req, res) => {
+    const {chatId, chatName} = req.body;
 
-module.exports = {accessChat, fetchChats, createGroupChat};
+    const updatedChat = await Chat.findByIdAndUpdate(
+        chatId,
+        {
+            chatName: chatName,
+        },
+        {
+            new: true,
+        }
+    )
+                                  .populate("users", "-password")
+                                  .populate("groupAdmin", "-password");
+
+    if (!updatedChat) {
+        res.status(404);
+        throw new Error("Chat Not Found");
+    }
+    else {
+        res.json(updatedChat);
+    }
+});
+
+
+module.exports = {accessChat, fetchChats, createGroupChat, renameGroup};
