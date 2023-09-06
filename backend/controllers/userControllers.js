@@ -3,7 +3,7 @@ const User = require("../models/userModel.js");
 const generateToken = require("../config/generateToken.js");
 
 //@description     Get or Search all users
-//@route           GET /api/v1/users?search=
+//@route           GET /api/v1/users?search=sohan
 //@access          Public
 const allUsers = asyncHandler(async (req, res) => {
     const keyword = req?.query.search
@@ -23,10 +23,10 @@ const allUsers = asyncHandler(async (req, res) => {
 //@route           POST /api/v1/register
 //@access          Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password, pic } = req.body;
+    const { name, email, password, pic } = req?.body;
 
     if (!name || !email || !password) {
-        res.status(400).json({ message: "Please Enter all the Feilds" });
+        res?.status(400).json({ message: "Please Enter all the Feilds" });
         throw new Error("Please Enter all the Feilds");
     }
 

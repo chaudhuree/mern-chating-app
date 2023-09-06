@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ChatContext = createContext();
+const ChatContext = createContext(undefined);
 
 const ChatProvider = ({ children }) => {
     const [selectedChat, setSelectedChat] = useState();
     const [user, setUser] = useState();
     const [notification, setNotification] = useState([]);
-    const [chats, setChats] = useState();
+    const [chats, setChats] = useState([]);
 
     const navigate = useNavigate();
-
+    // this work kind of like protected route. if the user is not logged in then it will redirect to the home page.
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem("userInfo"));
         setUser(userInfo);
