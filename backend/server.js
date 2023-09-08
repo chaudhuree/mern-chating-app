@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const helmet = require("helmet");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const {errorHandler, notFound} = require("./middleware/errorMiddleware");
@@ -15,7 +16,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+app.use(helmet({crossOriginResourcePolicy: false}))
 
 // db connection
 connectDB();
