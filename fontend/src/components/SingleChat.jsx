@@ -88,7 +88,7 @@ const SingleChat = ({fetchAgain, setFetchAgain}) => {
                     "/api/v1/sendmessage",
                     {
                         content: newMessage,
-                        chatId : selectedChat,
+                        chatId : selectedChat, // selectedChat._id
                     },
                     config
                 );
