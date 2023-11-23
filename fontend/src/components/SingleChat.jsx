@@ -129,6 +129,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     fetchMessages();
 
     selectedChatCompare = selectedChat;
+
+    // Remove selected chat from notification array
+    const newNotification = notification.filter(
+        (item) => item._chat !== selectedChat._id
+      );
+      setNotification(newNotification);
     // eslint-disable-next-line
   }, [selectedChat]);
 
