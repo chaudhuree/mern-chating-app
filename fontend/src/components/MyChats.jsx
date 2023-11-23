@@ -12,7 +12,7 @@ import {ChatState} from "../Context/ChatProvider";
 const MyChats = ({fetchAgain}) => {
     const [loggedUser, setLoggedUser] = useState();
 
-    const {selectedChat, setSelectedChat, user, chats, setChats} = ChatState();
+    const {selectedChat, setSelectedChat, user, chats, setChats,notification} = ChatState();
 
     const toast = useToast();
 
@@ -98,6 +98,8 @@ const MyChats = ({fetchAgain}) => {
                 {chats ? (
                     <Stack overflowY="scroll">
                         {chats.map((chat) => (
+                            
+                            
                             <Box
                                 onClick={() => setSelectedChat(chat)}
                                 cursor="pointer"

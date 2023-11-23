@@ -52,6 +52,8 @@ io.on("connection", (socket) => {
     // there it setSocketConnected to true
     socket.on("setup", (userData) => {
         socket.join(userData._id);
+        console.log('user connected');
+        
         socket.emit("connected");
     });
 
@@ -66,8 +68,8 @@ io.on("connection", (socket) => {
     // so when someone in the group or chat is typing it emits typing event from frontend
     // and here we listen to it and broadcast it to the room so that everyone in the room can see it
     // same for stop typing
-    socket.on("typing", (room) => socket.in(room).emit("typing"));
-    socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+    socket.on("typing", (room) => socket.in(room).emit("typing",room));
+    socket.on("stop typing", (room) => socket.in(room).emit("stop typing",room));
     // when someone sends a message it emits new message event from frontend and also sends the full message object. it is created using the message model
     // here we listen to it and broadcast it to the room so that everyone in the room can see it except the sender.
     // it is done in the sendMessage function in the chat screen.
@@ -80,6 +82,8 @@ io.on("connection", (socket) => {
     // but if the user is in the  same chat then the message is pushed in the messages array in the last position.so the message is shown in the chat screen.
     socket.on("new message", (newMessageRecieved) => {
         let chat = newMessageRecieved.chat;
+        // console.log('new message recieved', newMessageRecieved);
+        
 
         if (!chat.users) return console.log("chat.users not defined");
 
